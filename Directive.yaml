@@ -1,0 +1,19 @@
+# the Directive is a complete description of your application, including all of its business logic.
+# appVersion should be updated for each new deployment of your app.
+# atmoVersion declares which version of Atmo is used for the `subo dev` command.
+
+identifier: com.suborbital.atmo-nats-example
+appVersion: v0.1.0
+atmoVersion: v0.3.2
+
+connections:
+  nats:
+    serverAddress: "nats:4222"
+
+handlers:
+  - type: stream
+    source: nats
+    resource: com.suborbital.atmo/hello
+    steps:
+      - fn: helloworld
+    respondTo: com.suborbital.atmo/respond
